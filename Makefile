@@ -23,6 +23,10 @@ prod: build
 build:
 	docker build -t iami-container .
 
+.PHONY: setup
+setup: build
+	docker run --rm -v `pwd`:/work -w /work --entrypoint yarn -it iami-container install
+
 .PHONY: test
 test: build
 	docker run --rm \
