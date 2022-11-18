@@ -1,24 +1,16 @@
 # I am i
 
-A tool to detect the URL which contains cyrillic `і`.
+A Chrome extension to detect the URL which contains cyrillic `і`.
 
 ## Install
 
-	$ npm install
+`$ make setup`
 
 ## Development
-
-    npm run dev chrome
-    npm run dev firefox
-    npm run dev opera
-    npm run dev edge
+`$ make`
 
 ## Build
-
-    npm run build chrome
-    npm run build firefox
-    npm run build opera
-    npm run build edge
+`$ make prod`
 
 ## Environment
 
