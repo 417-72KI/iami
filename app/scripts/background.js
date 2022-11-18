@@ -57,7 +57,7 @@ function notifyOfBlockedUrl(url) {
     chrome.notifications.create(
         {
             type: 'basic',
-            iconUrl: 'images/icon-128.png',
+            iconUrl: '../images/icon-128.png',
             title:'Blocked URL',
             message: url
         },

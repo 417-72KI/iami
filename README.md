@@ -1,4 +1,4 @@
-# I am i
+# I am `i`
 
 A Chrome extension to detect the URL which contains cyrillic `і`.
 
