@@ -1,17 +1,6 @@
 // Based: https://stackoverflow.com/questions/39333408
-
-const punycode = require('punycode/');
-
-// Remember tab URLs
-var tabsInfo = {};
-
-function createTabRecordIfNeeded(tabId) {
-    if(!tabsInfo.hasOwnProperty(tabId) || typeof tabsInfo[tabId] !== 'object') {
-        // This is the first time we have encountered this tab.
-        // Create an object to hold the collected info for the tab.
-        tabsInfo[tabId] = new InfoForTab();
-    }
-}
+import { tabsInfo, createTabRecordIfNeeded } from './InfoForTab';
+import { matchesUrlToBlock } from './match_url';
 
 function blockUrlIfMatch(details) {
     console.log(details);
@@ -48,20 +37,6 @@ function blockUrlIfMatch(details) {
     notifyOfBlockedUrl(details.url);
 }
 
-export function matchesUrlToBlock(_url) {  
-  const url = new URL(_url);
-  // console.log(url);
-  if(url.protocol === 'chrome') { return false; }
-
-  // Decode Punycoded host.
-  const decodedHost = punycode.toUnicode(url.hostname);
-  // Detect `ɢoogle` (fake domain of google)
-  // ref: https://gigazine.net/news/20161122-google-is-not-google/
-  if(decodedHost.includes('ɢoogle') || url.hostname.includes('xn--oogle-wmc')) { return true; }
-  // console.log(decodedHost);
-  return decodedHost.includes('і');
-}
-
 function completedLoadingUrlInTab(details) {
     // console.log('details:', details);
     // We have completed loading a URL.
@@ -75,18 +50,11 @@ function completedLoadingUrlInTab(details) {
     tabsInfo[details.tabId].completeUrl = details.url;
 }
 
-class InfoForTab {
-    constructor(_url, _priorUrl) {
-        this.completeUrl = (typeof _url !== 'string') ? "" : _url;
-        this.priorCompleteUrl = (typeof _priorUrl !== 'string') ? "" : _priorUrl;
-    }
-}
-
 function notifyOfBlockedUrl(url) {
     chrome.notifications.create(
         {
             type: 'basic',
-            iconUrl: 'icon-128.png',
+            iconUrl: 'images/icon-128.png',
             title:'Blocked URL',
             message: url
         },
