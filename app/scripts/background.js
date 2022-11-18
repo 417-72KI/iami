@@ -47,6 +47,9 @@ function blockUrlIfMatch(details) {
 }
 
 function matchesUrlToBlock(_url) {
+    const url = new URL(_url);
+    console.log(url);
+    if(url.protocol === 'chrome') { return false; }
     return false;
 }
 
