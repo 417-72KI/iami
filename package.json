@@ -1,0 +1,12 @@
+{
+  "name": "I am i",
+  "version": "0.0.1",
+  "description": "A tool to detect the URL which contains cyrillic `і`.",
+  "scripts": {
+    "dev": "webextension-toolbox dev",
+    "build": "webextension-toolbox build"
+  },
+  "devDependencies": {
+    "webextension-toolbox": "latest"
+  }
+}

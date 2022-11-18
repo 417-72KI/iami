@@ -1,0 +1,14 @@
+{
+  "appName": {
+    "message": "I am i",
+    "description": "The name of the application"
+  },
+  "appShortName": {
+    "message": "iami",
+    "description": "The short_name (maximum of 12 characters recommended) is a short version of the app's name."
+  },
+  "appDescription": {
+    "message": "A tool to detect the URL which contains cyrillic `і`.",
+    "description": "The description of the application"
+  }
+}
