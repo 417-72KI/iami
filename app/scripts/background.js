@@ -50,7 +50,10 @@ function matchesUrlToBlock(_url) {
     const url = new URL(_url);
     console.log(url);
     if(url.protocol === 'chrome') { return false; }
-    return false;
+    // Detect fake domain of google
+    // ref: https://gigazine.net/news/20161122-google-is-not-google/
+    if(url.hostname.includes('ɢoogle')) { return true; }
+    return url.hostname.includes('і');
 }
 
 function completedLoadingUrlInTab(details) {
