@@ -14,7 +14,7 @@ build:
 
 .PHONY: setup
 setup: build
-	docker run --rm -v `pwd`:/work -w /work --entrypoint npm -it iami-container install
+	docker run --rm -v `pwd`:/work -w /work --entrypoint yarn -it iami-container install
 
 .PHONY: bash
 bash: build
