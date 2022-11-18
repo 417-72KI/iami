@@ -3,7 +3,7 @@ import { tabsInfo, createTabRecordIfNeeded } from './InfoForTab';
 import { matchesUrlToBlock } from './match_url';
 
 function blockUrlIfMatch(details) {
-    console.log(details);
+    // console.log(details);
     createTabRecordIfNeeded(details.tabId);
     
     if (!matchesUrlToBlock(details.url)) { return; }
@@ -19,9 +19,12 @@ function blockUrlIfMatch(details) {
         // Must navigate to priorCmpleteUrl as we can not load the current one.
         tabsInfo[details.tabId].completeUrl = tabsInfo[details.tabId].priorCompleteUrl;
     }
-    var urlToUse = tabsInfo[details.tabId].completeUrl;
-    urlToUse = (typeof urlToUse === 'string') ? urlToUse : '';
-    chrome.tabs.update(details.tabId, {url: urlToUse}, function(tab) {
+    // var urlToUse = tabsInfo[details.tabId].completeUrl;
+    // urlToUse = (typeof urlToUse === 'string') ? urlToUse : '';
+    var urlToUse = `./blocked.html?url=${encodeURI(details.url)}`;
+    console.log(urlToUse);
+    chrome.tabs.update(details.tabId, {url: urlToUse}, (tab) => {
+        console.log(tab);
         if(chrome.runtime.lastError) {
             if(chrome.runtime.lastError.message.indexOf('No tab with id:') > -1) {
                 // Chrome is probably loading a page in a tab which it is expecting to swap out with a current tab.
