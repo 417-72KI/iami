@@ -19,3 +19,6 @@ setup: build
 .PHONY: bash
 bash: build
 	docker run --rm -v `pwd`:/work -w /work --entrypoint /bin/bash -it iami-container
+
+.PHONY: sh
+sh: bash

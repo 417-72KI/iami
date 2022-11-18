@@ -1,5 +1,5 @@
 {
-  "name": "I am i",
+  "name": "iami",
   "version": "0.0.1",
   "description": "A tool to detect the URL which contains cyrillic `і`.",
   "scripts": {
