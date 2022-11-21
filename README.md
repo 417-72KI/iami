@@ -2,14 +2,10 @@
 
 A Chrome extension to detect the URL which contains cyrillic `і`.
 
-## Install
-
-`$ make setup`
-
 ## Development
 `$ make`
 
-## Build
+## Build for release
 `$ make prod`
 
 ## Environment
