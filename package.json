@@ -4,13 +4,15 @@
   "description": "A tool to detect the URL which contains cyrillic `і`.",
   "scripts": {
     "dev": "webextension-toolbox dev",
-    "build": "webextension-toolbox build"
+    "build": "webextension-toolbox build",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
     "@babel/preset-env": "^7.20.2",
     "@webextension-toolbox/webextension-toolbox": "latest",
     "babel-loader": "^9.1.0",
+    "jest": "^29.3.1",
     "webpack": "^5.75.0"
   },
   "dependencies": {
