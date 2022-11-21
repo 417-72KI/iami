@@ -2,5 +2,19 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
-  ]
+  ],
+  "timezone": "Asia/Tokyo",
+  "schedule": [
+    "after 6pm every weekday",
+    "every weekend",
+    "before 9am every weekday"
+  ],
+  "labels": [
+      "dependencies"
+  ],
+  "vulnerabilityAlerts": {
+      "labels": [
+          "security"
+      ]
+  }
 }
