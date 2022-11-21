@@ -23,6 +23,18 @@ prod: build
 build:
 	docker build -t iami-container .
 
+.PHONY: test
+test: build
+	docker run --rm \
+	-p 35729:35729 \
+	-v `pwd`/app:/work/app \
+	-v `pwd`/dist:/work/dist \
+	-v `pwd`/packages:/work/packages \
+	-v `pwd`/package.json:/work/package.json \
+	-v `pwd`/package-lock.json:/work/package-lock.json \
+	-it iami-container \
+	test
+
 .PHONY: bash
 bash: build
 	docker run --rm \
