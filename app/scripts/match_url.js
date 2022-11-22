@@ -1,6 +1,6 @@
 const punycode = require('punycode/');
 
-export function matchesUrlToBlock(_url) {  
+function matchesUrlToBlock(_url) {  
     const url = new URL(_url);
     // console.log(url);
     if(url.protocol === 'chrome') { return false; }
@@ -13,3 +13,5 @@ export function matchesUrlToBlock(_url) {
     // console.log(decodedHost);
     return decodedHost.includes('і');
 }
+
+module.exports = matchesUrlToBlock;
