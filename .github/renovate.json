@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
   "timezone": "Asia/Tokyo",
   "schedule": [
@@ -16,5 +16,21 @@
       "labels": [
           "security"
       ]
-  }
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "automerge": true
+    },
+    {
+      "matchManagers": ["npm"],
+      "automerge": true,
+      "major": {
+        "automerge": false
+      },
+      "minor": {
+        "automerge": false
+      }
+    }
+  ]
 }
