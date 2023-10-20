@@ -1,4 +1,4 @@
-FROM node:20
+FROM node:21
 
 # https://github.com/webextension-toolbox/generator-web-extension
 RUN npm install -g yo generator-web-extension
