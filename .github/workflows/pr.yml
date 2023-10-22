@@ -13,9 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Get node version from Dockerfile
+      id: node-version
+      run: |
+        echo "node-version=$(head -1 Dockerfile | sed 's/FROM node://g')" >> $GITHUB_OUTPUT
     - uses: actions/setup-node@v3
       with:
-        node-version: '21.x'
+        node-version: '${{steps.node-version.outputs.node-version}}'
         cache: npm
     - run: npm install
     - run: npm test
