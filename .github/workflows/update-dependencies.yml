@@ -37,7 +37,7 @@ jobs:
       if: ${{ steps.update-dependencies.outputs.update_required == 'true' }}
     - name: Create token for GitHub App
       if: ${{ steps.update-dependencies.outputs.update_required == 'true' }}
-      uses: actions/create-github-app-token@v2
+      uses: actions/create-github-app-token@v3
       id: app-token
       with:
         app-id: ${{ secrets.BOT_APP_ID }}
