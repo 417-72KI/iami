@@ -40,11 +40,8 @@ jobs:
       uses: actions/create-github-app-token@v3
       id: app-token
       with:
-        app-id: ${{ secrets.BOT_APP_ID }}
+        client-id: ${{ secrets.BOT_CLIENT_ID }}
         private-key: ${{ secrets.BOT_PRIVATE_KEY }}
-    - name: Set token to env
-      if: ${{ steps.update-dependencies.outputs.update_required == 'true' }}
-      run: echo GH_TOKEN=${{ steps.app-token.outputs.token }} >> $GITHUB_ENV
     - name: Commit and push changes
       if: ${{ steps.update-dependencies.outputs.update_required == 'true' }}
       run: |
@@ -52,4 +49,4 @@ jobs:
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         git add package.json package-lock.json
         git commit -m 'Run `npm update`'
-        git push https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }} HEAD:main
+        git push https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/${{ github.repository }}
