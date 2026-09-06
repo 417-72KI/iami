@@ -1,4 +1,4 @@
-FROM node:24
+FROM node:24-alpine
 
 # https://github.com/webextension-toolbox/generator-web-extension
 RUN npm install -g yo generator-web-extension
