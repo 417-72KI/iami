@@ -5,8 +5,10 @@ on:
       - main
     paths:
       - .github/workflows/update-dependencies.yml
+      - Dockerfile
       - package.json
       - package-lock.json
+  workflow_dispatch:
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
