@@ -5,8 +5,10 @@ on:
       - main
     paths:
       - .github/workflows/update-dependencies.yml
+      - Dockerfile
       - package.json
       - package-lock.json
+  workflow_dispatch:
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
@@ -33,7 +35,7 @@ jobs:
     - name: Get node version from Dockerfile
       id: node-version
       run: |
-        echo "node-version=$(head -1 Dockerfile | sed 's/FROM node://g')" >> $GITHUB_OUTPUT
+        echo "node-version=$(head -1 Dockerfile | sed -E 's/^FROM node:([0-9]+(\.[0-9]+)*)[-:].*$/\1/; s/^FROM node:([0-9]+(\.[0-9]+)*)$/\1/')" >> $GITHUB_OUTPUT
     - uses: actions/setup-node@v7
       with:
         node-version: '${{steps.node-version.outputs.node-version}}'
