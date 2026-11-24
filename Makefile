@@ -35,8 +35,8 @@ test: build
 	-it iami-container \
 	test
 
-.PHONY: bash
-bash: build
+.PHONY: sh
+sh: build
 	docker run --rm \
 	-p 35729:35729 \
 	-v `pwd`/app:/work/app \
@@ -44,8 +44,5 @@ bash: build
 	-v `pwd`/packages:/work/packages \
 	-v `pwd`/package.json:/work/package.json \
 	-v `pwd`/package-lock.json:/work/package-lock.json \
-	--entrypoint /bin/bash \
+	--entrypoint /bin/sh \
 	-it iami-container
-
-.PHONY: sh
-sh: bash
